@@ -20,7 +20,7 @@ public class Knight extends Piece {
     @Override
     public boolean checkIfMoveIsLegit(int newRow, int newCol, Board board) {
         return !checkIfMoveIsBlocked(newRow, newCol, board)
-        && checkIfMovementIsValid(newRow, newCol, board);
+        && checkIfMovementIsValid(newRow, newCol);
     }
 
     private boolean checkIfMoveIsBlocked(int newRow, int newCol, Board board) {
@@ -33,7 +33,7 @@ public class Knight extends Piece {
         return false;
     }
 
-    private boolean checkIfMovementIsValid(int newRow, int newCol, Board board) {
+    private boolean checkIfMovementIsValid(int newRow, int newCol) {
 
         //calculates the relative movement distance in regard to the original position
         int deltaRow = Math.abs(newRow - this.row);

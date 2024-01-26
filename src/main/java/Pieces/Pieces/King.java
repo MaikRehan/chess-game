@@ -18,8 +18,27 @@ public class King extends Piece {
         }
     }
 
+
     @Override
     public boolean checkIfMoveIsLegit(int newRow, int newCol, Board board) {
+        return !checkIfMoveIsBlocked(newRow, newCol, board)
+                && checkIfMovementIsValid(newRow, newCol);
+    }
+    public boolean checkIfMoveIsBlocked(int newRow, int newCol, Board board) {
+        if (board.getPiece(newRow, newCol) != null) {
+            return board.getPiece(newRow, newCol).getColour() == this.getColour();
+        }
         return false;
     }
+    private boolean checkIfMovementIsValid(int newRow, int newCol) {
+
+        //calculates the relative movement distance in regard to the original position
+        int deltaRow = Math.abs(newRow - this.row);
+        int deltaCol = Math.abs(newCol - this.col);
+
+        //check if relative movement is either 0 or 1 in either direction
+        return (deltaRow == 1 || deltaRow == 0) && (deltaCol == 1 || deltaCol == 0);
+
+    }
+
 }

@@ -23,10 +23,13 @@ public class Pawn extends Piece {
     public boolean checkIfMoveIsLegit(int newRow, int newCol, Board board) {
 
 
-        //check if move is out of bounds
+        /*check if move is out of bounds CURRENTLY NOT POSSIBLE
         if(newRow > 7 || newRow < 0 || newCol > 7 || newCol < 0){
             return false;
         }
+        */
+
+
         //can move if its one straight ahead and the tile is free OR if sideways and tile is occupied by enemy piece
         return checkForwardMove(newRow, newCol, board, this.colour) || checkDoubleForwardMove(newRow, newCol, board, this.colour)
                 || checkDiagonalTake(newRow, newCol, board, this.colour);

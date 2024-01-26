@@ -23,7 +23,7 @@ public class Board {
         if (piece.checkIfMoveIsLegit(newRow, newCol, this)){
             //-> if move is possible
             if(checkIfSquareHasOpponentPiece(piece, newRow, newCol)) {
-                sideboard.add(this.getPiece(newRow, newCol)); //move enemy Piece to the Sidebar if taken
+                sideboard.add(this.getPiece(newRow, newCol)); //TODO move enemy Piece to the Sidebar if taken
             }
             board[newRow][newCol] = piece;  //write Piece into new position
             board[piece.getRow()][piece.getCol()] = null;     //Delete Piece from old position

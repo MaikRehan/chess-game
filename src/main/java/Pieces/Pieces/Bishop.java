@@ -25,6 +25,7 @@ public class Bishop extends Piece {
 
     public boolean checkIfMovementIsBlocked(int newRow, int newCol, Board board){
 
+        // check if the move is blocked by a piece of the same colour
         if (board.getPiece(newRow, newCol) != null){
             if (board.getPiece(newRow, newCol).getColour() == this.colour)
                 return true;

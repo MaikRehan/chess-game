@@ -25,6 +25,7 @@ public class King extends Piece {
                 && checkIfMovementIsValid(newRow, newCol);
     }
     public boolean checkIfMoveIsBlocked(int newRow, int newCol, Board board) {
+        // check if target square is blocked by a piece of the same colour
         if (board.getPiece(newRow, newCol) != null) {
             return board.getPiece(newRow, newCol).getColour() == this.getColour();
         }

@@ -37,6 +37,15 @@ public class Board {
         response.setSuccess(false);
         return response;
     }
+    public boolean[][] getAllValidMovesArray(Piece piece){
+        boolean[][] validMoves = new boolean[8][8];
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                validMoves[i][j] = piece.checkIfMoveIsLegit(i, j, this);
+            }
+        }
+        return validMoves;
+    }
 
 
     private boolean checkIfSquareHasOpponentPiece(Piece piece, int newRow, int newCol) {

@@ -44,6 +44,9 @@ public class Controller {
         return this.activePlayerColor;
     }
 
+    public boolean[][] getAllValidMovesArray(Piece piece){
+        return board.getAllValidMovesArray(piece);
+    }
     public Piece getPiece(int row, int col){
         return board.getPiece(row, col);
     }

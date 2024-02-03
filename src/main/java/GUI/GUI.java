@@ -33,6 +33,7 @@ public class GUI extends JFrame{
     Color lightColor = new Color(255, 206, 158);  // Light color for squares
     Color darkColor = new Color(209, 139, 71);    // Dark color for squares
     Color selectedColor = new Color(246, 78, 24);
+    Color possibleMoveColour = new Color(176, 213, 88, 255);
 
 
     public GUI() {
@@ -93,9 +94,10 @@ public class GUI extends JFrame{
         selectedSquare = (JButton) e.getSource();
         selectedRow = getSelectedRow(selectedSquare);
         selectedCol = getSelectedCol(selectedSquare);
-        turnOnHighlightColorSquare(selectedRow, selectedCol);
         selectedPiece = controller.getPiece(selectedRow, selectedCol);
         selectedSquare = (JButton) e.getSource();
+        highlightAllPossibleMoves();
+        turnOnHighlightColorSquare(selectedRow, selectedCol);
 
 
     }
@@ -110,7 +112,7 @@ public class GUI extends JFrame{
         //if a piece is dragged on its original square -> i.e. it's a click
         if ((selectedPiece.getRow() == targetRow) && (selectedPiece.getCol() == targetCol)){
 
-            turnOffHighlightColorSquare(selectedPiece.getRow(), selectedPiece.getCol());
+            turnOffHighlightColorSquare();
             clearSelectedSquare();
             return;
         }
@@ -124,7 +126,7 @@ public class GUI extends JFrame{
             JOptionPane.showMessageDialog(this, response.getMessage());
             updateIcons();
         }
-        turnOffHighlightColorSquare(selectedRow, selectedCol);
+        turnOffHighlightColorSquare();
         clearSelectedSquare();
     }
     private void turnOnHighlightColorSquare(int selectedRow, int selectedCol){
@@ -133,11 +135,26 @@ public class GUI extends JFrame{
             chessBoardSquares[selectedPiece.getRow()][selectedPiece.getCol()].setBackground(selectedColor);
         }
     }
-    private void turnOffHighlightColorSquare(int selectedRow, int selectedCol){
-        if ((selectedRow + selectedCol) % 2 == 0) {
-            selectedSquare.setBackground(lightColor);
-        } else {
-            selectedSquare.setBackground(darkColor);
+    private void highlightAllPossibleMoves(){
+        boolean[][] possibleMovesArray = controller.getAllValidMovesArray(selectedPiece);
+        for(int row = 0; row < 8; row++){
+            for(int col = 0; col < 8; col++){
+                if(possibleMovesArray[row][col]){
+                    chessBoardSquares[row][col].setBackground(possibleMoveColour);
+                }
+            }
+        }
+    }
+    private void turnOffHighlightColorSquare(){
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                if ((row + col) % 2 == 0) {
+                    chessBoardSquares[row][col].setBackground(lightColor);
+                } else {
+                    chessBoardSquares[row][col].setBackground(darkColor);
+                }
+
+            }
         }
     }
     private void clearSelectedSquare(){

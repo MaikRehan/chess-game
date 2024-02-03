@@ -13,10 +13,11 @@ import java.io.PrintWriter;
 @Setter
 public class Controller {
     private Board board;
-    private Color activePlayerColor;
+    private Colour activePlayerColor;
 
     public Controller(){
         createBoard(8);
+        activePlayerColor = Colour.WHITE;
     }
 
     public void createBoard(int boardSize){
@@ -24,8 +25,25 @@ public class Controller {
         initialBoardFill();
     }
     public MovePieceResponse movePiece(int oldRow, int oldCol, int newRow, int newCol){
-        return board.movePiece(board.getPiece(oldRow, oldCol), newRow, newCol);
+        if (board.getPiece(oldRow, oldCol).getColour().equals(this.activePlayerColor)){
+            MovePieceResponse response = board.movePiece(board.getPiece(oldRow, oldCol), newRow, newCol);
+            if (response.isSuccess()) {
+                switchPlayerTurn();
+            }
+            return response;
+        }else
+            return new MovePieceResponse(false, "Spieler ist nicht am Zug");
     }
+    public Colour switchPlayerTurn(){
+        if (this.activePlayerColor.equals(Colour.BLACK)) {
+            this.activePlayerColor = Colour.WHITE;
+        }
+        else {
+            this.activePlayerColor = Colour.BLACK;
+        }
+        return this.activePlayerColor;
+    }
+
     public Piece getPiece(int row, int col){
         return board.getPiece(row, col);
     }

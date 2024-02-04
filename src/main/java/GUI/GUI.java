@@ -29,7 +29,6 @@ public class GUI extends JFrame{
     private Component lastEntered;
 
 
-
     Color lightColor = new Color(255, 206, 158);  // Light color for squares
     Color darkColor = new Color(209, 139, 71);    // Dark color for squares
     Color selectedColor = new Color(246, 78, 24);
@@ -198,40 +197,7 @@ public class GUI extends JFrame{
         }
 
     }
-    /*
-    @Getter
-    @Setter
-    private class SquareMouseListener extends MouseAdapter{
-        private int selectedRow;
-        private int selectedCol;
-        public SquareMouseListener(int selectedRow, int selectedCol){
-            this.selectedRow = selectedRow;
-            this.selectedCol = selectedCol;
-        }
-        @Override
-        public void mousePressed(MouseEvent e) {
-            JButton selectedSquare = (JButton) e.getSource();
-            int selectedRow = getSelectedRow(selectedSquare);
-            int selectedCol = getSelectedCol(selectedSquare);
-            handleMousePressed(e, selectedRow, selectedCol);
-            System.out.printf("Mouse Released at: %s%n", e.getPoint());
-            System.out.println("Mouse pressed down on square: Row=" + selectedRow + ", Col=" + selectedCol);
-        }
-        @Override
-       public void mouseReleased(MouseEvent e) {
-            Component releasedSquare = getComponentAt(e.getPoint());
-            int releasedRow = getSelectedRow(releasedSquare);
-            int releasedCol = getSelectedCol(releasedSquare);
-            System.out.println("Mouse released on square: Row=" + releasedRow + ", Col=" + releasedCol);
-            System.out.printf("Mouse Released at: %s%n", e.getPoint());
-            handleMouseReleased(e, releasedRow, releasedCol);
-
-
-        }
-
-    }*/
-
-  public static void main(String[] args) {
+    public static void main(String[] args) {
       SwingUtilities.invokeLater(new Runnable() {
           @Override
           public void run() {

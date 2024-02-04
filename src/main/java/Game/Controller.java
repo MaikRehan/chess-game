@@ -43,6 +43,12 @@ public class Controller {
         }
         return this.activePlayerColor;
     }
+    public boolean checkIfMate(){
+        return checkIfMate(activePlayerColor);
+    }
+    public boolean checkIfCheckMate(){
+        return checkIfCheckMate(activePlayerColor);
+    }
 
     public boolean[][] getAllValidMovesArray(Piece piece){
         return board.getAllValidMovesArray(piece);

@@ -1,6 +1,7 @@
 package Game;
 
 import Pieces.Piece;
+import Util.Colour;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +46,12 @@ public class Board {
             }
         }
         return validMoves;
+    }
+    public boolean checkIfMate(Colour activePlayerColour){
+        for(int)
+    }
+    public boolean checkIfCheckMate(Colour activePlayerColour){
+
     }
 
 
